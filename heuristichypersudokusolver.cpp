@@ -5,10 +5,10 @@
 #include "sudokuconstraint.h"
 #include "sudokuvariable.h"
 #include "sudokudomain.h"
-#include "sudokucsp.h"
+#include "hypersudokucsp.h"
 #include "sudokuassignment.h"
 #include "domainrestoreinfo.h"
-#include "backtrackingsearch.h"
+#include "heuristicbacktrackingsearch.h"
 
 using namespace std;
 
@@ -48,10 +48,10 @@ int main(int argc, char* argv[]) {
 		initial[i] = new short[10];
 	}
 	convertToShort2D(init, initial);
-	SudokuCSP* scsp = new SudokuCSP(initial);
-	BackTrackingSearch* bts = new BackTrackingSearch();
-	SudokuAssignment* sa = bts->solve(scsp, initial);
-	cout << bts->getExplored() << endl;
+	HyperSudokuCSP* hscsp = new HyperSudokuCSP(initial);
+	HeuristicBackTrackingSearch* hbts = new HeuristicBackTrackingSearch();
+	SudokuAssignment* sa = hbts->solve(hscsp, initial);
+	cout << hbts->getExplored() << endl;
 	sa->getAssignment(initial);
 	convertToString2D(initial, init);
 	ofstream ofile(argv[2]);
@@ -60,8 +60,5 @@ int main(int argc, char* argv[]) {
 			ofile << init[i];
 		}
 	}
-	delete scsp;
-	delete bts;
-	delete sa;
 	return 0;
 }

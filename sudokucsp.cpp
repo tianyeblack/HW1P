@@ -49,6 +49,18 @@ vector<SudokuConstraint*>* SudokuCSP :: getConstraints(SudokuVariable* var) {
 	return &cnet[var];
 }
 
+SudokuVariable* SudokuCSP :: getNeighbor(SudokuVariable* var, SudokuConstraint* con) {
+	vector<short>* scope = con->getScope();
+	if (scope->size() == 2) {
+		if (var->getIndex() == (*scope)[0]) {
+			return &svariables[(*scope)[1]];
+		} else if (var->getIndex() == (*scope)[1]) {
+			return &svariables[(*scope)[0]];
+		}
+	}
+	return 0;
+}
+
 void SudokuCSP :: setDomain(const SudokuVariable* var, SudokuDomain* domain) {
 	sdomains[var->getIndex()].setDomain(domain);
 }

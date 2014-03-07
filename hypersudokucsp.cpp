@@ -18,6 +18,7 @@ HyperSudokuCSP :: HyperSudokuCSP(short** initial) : SudokuCSP(initial) {
 							}
 							if (initial[x][y] != 0) {
 								removeValueFromDomain(&svariables[xyTo1D(p, q)], initial[x][y]);
+								sdomains[xyTo1D(x, y)].setDomain((short)initial[x][y]);
 							}
 						}
 					}

@@ -10,7 +10,7 @@ private:
 	short asmt[81];
 public:
 	SudokuAssignment();
-	SudokuAssignment(short** initial);
+	SudokuAssignment(short** initial, SudokuCSP* scsp);
 	short** getAssignment(short** result);
 	short getSudokuAssignmentOf(short index);
 	short getSudokuAssignmentOf(const SudokuVariable* var);

@@ -2,8 +2,16 @@
 
 using namespace std;
 
+BackTrackingSearch :: BackTrackingSearch() {
+	explored = 0;
+}
+
+unsigned long BackTrackingSearch :: getExplored() const {
+	return explored;
+}
+
 SudokuAssignment* BackTrackingSearch :: solve(SudokuCSP* scsp, short** initial) {
-		return recursiveBackTrackingSearch(scsp, new SudokuAssignment(initial));
+		return recursiveBackTrackingSearch(scsp, new SudokuAssignment(initial, scsp));
 }
 
 SudokuAssignment* BackTrackingSearch :: recursiveBackTrackingSearch(SudokuCSP* scsp, SudokuAssignment* sa) {
@@ -15,6 +23,7 @@ SudokuAssignment* BackTrackingSearch :: recursiveBackTrackingSearch(SudokuCSP* s
 		short* d = orderDomainValues(var, sa, scsp)->getDomainAsArray();
 		for (short i = 0; d[i] != 0; i++) {
 			sa->setSudokuAssignmentOf(var, d[i]);
+			explored++;
 			// fireStateChanged(scsp);
 			if (sa->isConsistent(scsp->getConstraints(var))) {
 				DomainRestoreInfo* info = inference(var, sa, scsp);

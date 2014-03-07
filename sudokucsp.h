@@ -28,6 +28,7 @@ public:
 	SudokuDomain* getDomain(const SudokuVariable* var);
 	vector<SudokuConstraint*>* getConstraints();
 	vector<SudokuConstraint*>* getConstraints(SudokuVariable* var);
+	SudokuVariable* getNeighbor(SudokuVariable* var, SudokuConstraint* con);
 	void setDomain(const SudokuVariable* var, SudokuDomain* domain);
 	void removeValueFromDomain(const SudokuVariable* var, short value);
 	void removeValueFromColumn(const SudokuVariable* var, short value);

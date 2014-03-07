@@ -13,10 +13,16 @@ SudokuAssignment :: SudokuAssignment() {
 	}
 }
 
-SudokuAssignment :: SudokuAssignment(short** initial) {
+SudokuAssignment :: SudokuAssignment(short** initial, SudokuCSP* scsp) {
 	for (int i = 1; i <= 9; i++) {
 		for (int j = 1; j <= 9; j++) {
 			asmt[(i - 1) * 9 + (j - 1)] = initial[i][j];
+			SudokuDomain* d = scsp->getDomain(&(scsp->getVariables()[(i - 1) * 9 + (j - 1)]));
+			if (d->size() == 1) {
+				short* dd = d->getDomainAsArray();
+				asmt[(i - 1) * 9 + (j - 1)] = dd[0];
+				delete dd;
+			}
 		}
 	}
 }

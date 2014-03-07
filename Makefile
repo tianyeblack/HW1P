@@ -1,21 +1,24 @@
+HyperSudokuSolverHeuristic:	heuristichypersudokusolver.o heuristicbacktrackingsearch.o backtrackingsearch.o domainrestoreinfo.o sudokuassignment.o hypersudokucsp.o sudokucsp.o sudokuconstraint.o sudokudomain.o sudokuvariable.o
+	g++ -o HyperSudokuSolverHeuristic -g -lstdc++ heuristichypersudokusolver.o heuristicbacktrackingsearch.o backtrackingsearch.o domainrestoreinfo.o sudokuassignment.o hypersudokucsp.o sudokucsp.o sudokuconstraint.o sudokudomain.o sudokuvariable.o
+	
 HyperSudokuSolver:	hypersudokusolver.o backtrackingsearch.o domainrestoreinfo.o sudokuassignment.o hypersudokucsp.o sudokucsp.o sudokuconstraint.o sudokudomain.o sudokuvariable.o
 	g++ -o HyperSudokuSolver -g -lstdc++ hypersudokusolver.o backtrackingsearch.o domainrestoreinfo.o sudokuassignment.o hypersudokucsp.o sudokucsp.o sudokuconstraint.o sudokudomain.o sudokuvariable.o
 
 SudokuSolver:		sudokusolver.o backtrackingsearch.o domainrestoreinfo.o sudokuassignment.o sudokucsp.o sudokuconstraint.o sudokudomain.o sudokuvariable.o
 	g++ -o SudokuSolver -g -lstdc++ sudokusolver.o backtrackingsearch.o domainrestoreinfo.o sudokuassignment.o sudokucsp.o sudokuconstraint.o sudokudomain.o sudokuvariable.o
 
-DomainTest:		sudokudomaintest.o sudokudomain.o
-	g++ -o DomainTest sudokudomaintest.o sudokudomain.o
-	
-sudokudomaintest.o:	sudokudomaintest.cpp
-	g++ -Wall -g -c sudokudomaintest.cpp
-	
+heuristichypersudokusolver.o:	heuristichypersudokusolver.cpp
+	g++ -Wall -g -c heuristichypersudokusolver.cpp
+		
 hypersudokusolver.o:
 	g++ -Wall -g -c hypersudokusolver.cpp
 	
 sudokusolver.o:		sudokusolver.cpp
 	g++ -Wall -g -c sudokusolver.cpp
 
+heuristicbacktrackingsearch.o:	heuristicbacktrackingsearch.cpp
+	g++ -Wall -g -c heuristicbacktrackingsearch.cpp
+	
 backtrackingsearch.o:	backtrackingsearch.cpp
 	g++ -Wall -g -c backtrackingsearch.cpp
 	
@@ -41,4 +44,4 @@ sudokuvariable.o:	sudokuvariable.cpp
 	g++ -Wall -g -c sudokuvariable.cpp
 
 clean:
-	rm -f *.o SudokuSolver HyperSudokuSolver
+	rm -f *.o SudokuSolver HyperSudokuSolver HeuristicHyperSudokuSolver

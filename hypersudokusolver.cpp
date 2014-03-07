@@ -51,6 +51,7 @@ int main(int argc, char* argv[]) {
 	HyperSudokuCSP* hscsp = new HyperSudokuCSP(initial);
 	BackTrackingSearch* bts = new BackTrackingSearch();
 	SudokuAssignment* sa = bts->solve(hscsp, initial);
+	cout << bts->getExplored() << endl;
 	sa->getAssignment(initial);
 	convertToString2D(initial, init);
 	ofstream ofile(argv[2]);
@@ -59,5 +60,8 @@ int main(int argc, char* argv[]) {
 			ofile << init[i];
 		}
 	}
+	delete hscsp;
+	delete bts;
+	delete sa;
 	return 0;
 }
